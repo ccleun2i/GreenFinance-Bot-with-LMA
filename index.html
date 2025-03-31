@@ -12,6 +12,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
             min-height: 100vh;
+            padding-bottom: 40px; /* Adjusted padding, may not be needed depending on default Coze button */
         }
 
         .page-header {
@@ -42,39 +43,18 @@
             box-shadow: 0 2px 15px rgba(0,77,64,0.1);
         }
 
-        .chat-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 380px;
-            height: 600px;
-            border: 1px solid #A5D6A7;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,77,64,0.15);
-            background: white;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .chat-container:hover {
-            transform: translateY(-5px);
-        }
-
-        .chat-header {
-            background: #00796B;
-            color: white;
-            padding: 1.2rem;
+        .section-heading {
+            color: #004D40;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1.1rem;
-            font-weight: 500;
+            gap: 10px;
+            border-bottom: 2px solid #A5D6A7;
+            padding-bottom: 0.5rem;
         }
 
-        .chat-header .material-icons {
-            font-size: 24px;
-            color: #C8E6C9;
-        }
+        /* --- Chat Container CSS REMOVED --- */
+        /* Removed .chat-container, .chat-header, #coze-chat-content */
 
         .feature-cards {
             display: grid;
@@ -88,11 +68,14 @@
             background: #F1F8E9;
             border-radius: 8px;
             border-left: 4px solid #00796B;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .feature-card:hover {
             transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,77,64,0.1);
         }
 
         .feature-card h3 {
@@ -101,11 +84,19 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+             flex-grow: 1;
+             margin-bottom: 0;
+             color: #333;
+             font-size: 0.95rem;
         }
 
         .eco-icon {
             color: #388E3C;
-            font-size: 20px;
+            font-size: 22px;
         }
 
         .btn-green {
@@ -119,6 +110,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            text-decoration: none;
+            margin-top: 1rem;
         }
 
         .btn-green:hover {
@@ -126,68 +119,158 @@
             transform: translateY(-2px);
             box-shadow: 0 3px 8px rgba(0,77,64,0.2);
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 1.5rem;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+             /* Removed chat specific responsive styles */
+             .page-header h1 {
+                font-size: 1.5rem;
+             }
+             body {
+                 padding: 10px;
+                 padding-bottom: 20px;
+             }
+        }
+
     </style>
-    <!-- Coze SDK -->
+    <!-- Coze SDK script import (Still Required) -->
     <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.3/libs/oversea/index.js"></script>
 </head>
 <body>
     <header class="page-header">
         <h1>
-            <span class="material-icons">eco</span>
+            <span class="material-icons" style="font-size: 2.5rem;">eco</span>
             Green Finance Assistant
         </h1>
         <p>Sustainable Banking Solutions for a Better Tomorrow</p>
     </header>
 
     <div class="content-section">
-        <h2 style="color: #004D40; margin-bottom: 1.5rem;">Sustainable Banking Services</h2>
+        <h2 class="section-heading">
+            <span class="material-icons">account_balance</span>
+            Our Sustainable Banking Services
+        </h2>
+        <p>We offer a range of financial products and advisory services designed to support environmental sustainability and positive social impact, helping you align your finances with your values.</p>
         <div class="feature-cards">
             <div class="feature-card">
                 <h3>
                     <span class="material-icons eco-icon">monetization_on</span>
                     ESG Investments
                 </h3>
-                <p>Explore environmentally responsible investment opportunities with competitive returns.</p>
+                <p>Explore environmentally responsible investment opportunities focusing on Environmental, Social, and Governance factors with competitive returns.</p>
             </div>
             <div class="feature-card">
                 <h3>
                     <span class="material-icons eco-icon">spa</span>
-                    Green Financing
+                    Green Project Financing
                 </h3>
-                <p>Special loan programs for eco-friendly projects and sustainable business initiatives.</p>
+                <p>Access specialized loan programs designed for large-scale eco-friendly projects and significant sustainable business initiatives.</p>
             </div>
             <div class="feature-card">
                 <h3>
-                    <span class="material-icons eco-icon">account_balance</span>
-                    Advisory Services
+                    <span class="material-icons eco-icon">lightbulb</span>
+                    Sustainability Advisory
                 </h3>
-                <p>Expert guidance on sustainable banking practices and financial planning.</p>
+                <p>Receive expert guidance on integrating sustainable banking practices into your financial strategy and long-term planning.</p>
             </div>
         </div>
     </div>
 
-    <div id="coze-chat-container" class="chat-container">
-        <div class="chat-header">
-            <span class="material-icons">forum</span>
-            Sustainable Finance Assistant
+    <!-- Section for SME Green Finance -->
+    <div class="content-section">
+        <h2 class="section-heading">
+            <span class="material-icons">business</span>
+            Empowering SMEs with Green Finance
+        </h2>
+        <p>We understand the unique challenges and opportunities for Small and Medium-sized Enterprises. Our tailored green finance solutions help SMEs enhance sustainability, reduce costs, and build resilience.</p>
+        <div class="feature-cards">
+             <div class="feature-card">
+                <h3>
+                    <span class="material-icons eco-icon">bolt</span>
+                    Energy Efficiency Loans
+                </h3>
+                <p>Finance upgrades like LED lighting, efficient HVAC systems, or insulation to lower energy bills and carbon footprint.</p>
+            </div>
+            <div class="feature-card">
+                <h3>
+                    <span class="material-icons eco-icon">solar_power</span>
+                    Renewable Energy Finance
+                </h3>
+                <p>Get funding for installing solar panels or other renewable energy sources for your business premises.</p>
+            </div>
+             <div class="feature-card">
+                <h3>
+                    <span class="material-icons eco-icon">recycling</span>
+                    Circular Economy Funding
+                </h3>
+                <p>Support for SMEs transitioning to circular business models, focusing on waste reduction, reuse, and recycling initiatives.</p>
+            </div>
+            <div class="feature-card">
+                <h3>
+                    <span class="material-icons eco-icon">local_shipping</span>
+                    Green Asset Financing
+                </h3>
+                <p>Lease or purchase financing for eco-friendly equipment, electric vehicles, or sustainable machinery.</p>
+            </div>
+             <div class="feature-card">
+                <h3>
+                    <span class="material-icons eco-icon">support_agent</span>
+                    SME Sustainability Support
+                </h3>
+                <p>Access resources and guidance specifically for SMEs on sustainability reporting, certifications, and navigating green regulations.</p>
+            </div>
+             <div class="feature-card">
+                <h3>
+                    <span class="material-icons eco-icon">water_drop</span>
+                     Water Efficiency Loans
+                </h3>
+                <p>Finance projects aimed at reducing water consumption, such as rainwater harvesting or efficient irrigation systems.</p>
+            </div>
+        </div>
+         <div style="text-align: center; margin-top: 2rem;">
+            <a href="#" class="btn-green" onclick="alert('Please contact our SME banking team at 2298 8000!'); return false;">
+                <span class="material-icons">call</span>
+                Talk to an SME Advisor
+            </a>
         </div>
     </div>
+    <!-- End SME Section -->
 
+    <!-- Chat Container HTML REMOVED -->
+    <!-- <div id="coze-outer-container" class="chat-container"> ... </div> -->
+
+
+    <!-- Coze SDK initialization script MODIFIED -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             new CozeWebSDK.WebChatClient({
                 config: {
-                    bot_id: '7477481925876744200',
+                    bot_id: '7477481925876744200', // Ensure this is your correct Bot ID
                 },
                 componentProps: {
-                    title: 'Green Finanial Assistant with LMA',
-                    containerId: 'coze-chat-container',
-                    
+                    // The 'title' prop likely controls the title within the default Coze UI
+                    title: 'Green Financial Assistant',
+                    // *** REMOVED containerProps ***
+                    // This allows Coze SDK to use its default rendering (usually a floating button)
                 },
                 auth: {
                     type: 'token',
+                    // Replace with your actual PAT
                     token: 'pat_kBTNnTtofw5Y138yCgBDDnqdowOoLrWQBojAQURDMaQ5YvPgwzYq0LcXg6KsjGJP',
                     onRefreshToken: function() {
+                        console.warn("Refreshing token - using static token for demonstration. Replace with secure backend call.");
+                        // Replace with your actual PAT or function to fetch a new one
                         return 'pat_kBTNnTtofw5Y138yCgBDDnqdowOoLrWQBojAQURDMaQ5YvPgwzYq0LcXg6KsjGJP';
                     }
                 }
